@@ -1,0 +1,135 @@
+### Useful Commands for the Open-Source Project
+
+---
+
+## 1. Connect to the Server
+
+### Windows (PowerShell or CMD):
+ssh -i "C:\Users\myelf\Desktop\.ssh\my-key.pem" ubuntu@<SERVER_IP>
+
+### Linux/MacOS:
+ssh -i "key.pem" ubuntu@<SERVER_IP>
+
+Replace `<SERVER_IP>` with the public IP of your server.
+
+---
+
+## 2. Copy Files to the Server
+
+### Copy a folder:
+scp -i "path/to/your-key.pem" -r path/to/project-folder ubuntu@<SERVER_IP>:/home/ubuntu/
+
+### Copy a single file:
+scp -i "path/to/your-key.pem" path/to/file ubuntu@<SERVER_IP>:/home/ubuntu/
+
+Replace `path/to/your-key.pem` with your SSH key, and `<SERVER_IP>` with your server's public IP.
+
+---
+
+## 3. Navigate to the Project Directory
+cd <project-directory>
+
+Replace `<project-directory>` with the location of your project, e.g.:
+cd ~/webPartWserver
+cd ~/jdaBOT/untitled
+
+---
+
+## 4. Grant Execute Permissions
+chmod +x ./gradlew
+
+Use this to make the Gradle wrapper script executable, or any other scripts if needed.
+
+---
+
+## 5. Run the Gradle Project
+./gradlew run
+
+This builds and runs the Java-based bot project.
+
+---
+
+## 6. Install Node.js Dependencies
+
+### Install all dependencies listed in `package.json`:
+npm install
+
+### Install a specific module (e.g., `mysql`):
+npm install mysql
+
+---
+
+## 7. Manage Node.js Processes with PM2
+
+### Start a Node.js server:
+pm2 start server.js --name <process-name>
+
+Example:
+pm2 start server.js --name webServer
+
+### View process logs:
+pm2 logs <process-name>
+
+Example:
+pm2 logs webServer
+
+### List all PM2 processes:
+pm2 list
+
+### Stop a specific process:
+pm2 stop <process-name>
+
+### Restart a specific process:
+pm2 restart <process-name>
+
+### Delete a specific process:
+pm2 delete <process-name>
+
+---
+
+## 8. Configure MySQL
+
+### Set MySQL root password:
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '<password>';
+FLUSH PRIVILEGES;
+
+Replace `<password>` with your desired MySQL root password.
+
+### Log in to MySQL:
+mysql -u root -p
+
+---
+
+## 9. Monitor Server Logs
+### PM2 logs:
+pm2 logs <process-name>
+
+### System logs:
+journalctl -xe
+
+---
+
+## 10. Update and Manage the System
+
+### Update system packages:
+sudo apt update && sudo apt upgrade -y
+
+### Install Node.js and npm:
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
+
+### Install MySQL Server:
+sudo apt install -y mysql-server
+
+### Start MySQL Service:
+sudo service mysql start
+
+---
+
+## 11. General Tips
+
+- Dont open and edit files you dont know or recognise
+- Regularly monitor logs to ensure the system and processes are functioning correctly.
+- Use `tmux` or `screen` for long-running SSH sessions to prevent disconnections.
+
+---
